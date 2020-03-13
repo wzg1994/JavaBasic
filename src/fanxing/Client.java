@@ -16,5 +16,12 @@ public class Client {
         teacher.setSex("未知");
         System.out.println("teacher类：" + teacher);
 
+        GenericInterface<String> genericInterface = s -> s + "aaaaaa";
+        System.out.println(genericInterface.apply("1"));
+
+    }
+
+    public static <T> T getInfo(T a, T b) {
+        return a;
     }
 }
