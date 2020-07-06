@@ -43,14 +43,16 @@ public class LinkedList {
      */
     public static Node reverseList(Node head) {
 
-        Node temp = null;
-
-        while (head != null) {
-            temp = head.next;
-            head.next = temp;
+        Node prev = null;
+        Node curr = head;
+        while (curr != null) {
+            Node nextTemp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextTemp;
+            int a = 0;
         }
-
-        return null;
+        return prev;
     }
 
     /**
