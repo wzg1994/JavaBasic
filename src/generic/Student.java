@@ -1,15 +1,14 @@
-package fanxing;
+package generic;
 
 /**
+ * 泛型类
  * @author wangzhiguo
  */
-public class Teacher<T, K, U> {
+public class Student<T> {
 
     private T name;
 
-    private K age;
-
-    private U sex;
+    private T sex;
 
     public T getName() {
         return name;
@@ -19,27 +18,18 @@ public class Teacher<T, K, U> {
         this.name = name;
     }
 
-    public K getAge() {
-        return age;
-    }
-
-    public void setAge(K age) {
-        this.age = age;
-    }
-
-    public U getSex() {
+    public T getSex() {
         return sex;
     }
 
-    public void setSex(U sex) {
+    public void setSex(T sex) {
         this.sex = sex;
     }
 
     @Override
     public String toString() {
-        return "Teacher{" +
+        return "Student{" +
                 "name=" + name +
-                ", age=" + age +
                 ", sex=" + sex +
                 '}';
     }

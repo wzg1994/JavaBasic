@@ -1,4 +1,4 @@
-package fanxing;
+package generic;
 
 /**
  *
