@@ -1,6 +1,6 @@
 package reflection;
 
-import fanxing.Student;
+import generic.Student;
 
 public class Client {
 
