@@ -16,36 +16,36 @@ public class LinkedList {
      */
 
     public static void main(String[] args) {
-        Node head = new Node();
+        ListNode head = new ListNode();
         head.setVal(1);
 
-        Node node1 = new Node();
-        node1.setVal(2);
-        head.setNext(node1);
+        ListNode listNode1 = new ListNode();
+        listNode1.setVal(2);
+        head.setNext(listNode1);
 
-        Node node2 = new Node();
-        node2.setVal(3);
-        node1.setNext(node2);
+        ListNode listNode2 = new ListNode();
+        listNode2.setVal(3);
+        listNode1.setNext(listNode2);
 
-        Node node3 = new Node();
-        node3.setVal(4);
-        node2.setNext(node3);
+        ListNode listNode3 = new ListNode();
+        listNode3.setVal(4);
+        listNode2.setNext(listNode3);
 
-        Node node4 = new Node();
-        node4.setVal(5);
-        node3.setNext(node4);
-        Node node = reverseList2(head);
-        printElementByRecursive(node);
+        ListNode listNode4 = new ListNode();
+        listNode4.setVal(5);
+        listNode3.setNext(listNode4);
+        ListNode listNode = getMidNode1(head);
+        printElementByRecursive(listNode);
     }
 
     /**
      * 1，2，3，4，5反转
      */
-    public static Node reverseList1(Node head) {
-        Node pre = null;
-        Node cur = head;
+    public static ListNode reverseList1(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
         while (cur != null) {
-            Node temp = cur.next;
+            ListNode temp = cur.next;
             cur.next = pre;
             pre = cur;
             cur = temp;
@@ -57,22 +57,68 @@ public class LinkedList {
     /**
      * 递归反转单向链表
      */
-    public static Node reverseList2(Node head) {
+    public static ListNode reverseList2(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        Node p = reverseList2(head.next);
+        ListNode p = reverseList2(head.next);
         head.next.next = head;
         head.next = null;
         return p;
     }
 
     /**
+     * 获取中间节点
+     */
+    public static ListNode getMidNode1(ListNode head) {
+        ListNode[] arr = new ListNode[100];
+        int i = 0;
+        while (head != null) {
+            arr[i] = head;
+            head = head.next;
+            i++;
+        }
+        return arr[i / 2];
+    }
+
+    /**
+     * 获取中间节点
+     */
+    public static ListNode getMidNode2(ListNode head) {
+        ListNode temp = head;
+        int i = 0;
+        int j = 0;
+        while (head != null) {
+            head = head.next;
+            i++;
+        }
+
+        while (temp != null) {
+            if (j == i / 2) {
+                return temp;
+            }
+            temp = temp.next;
+            j++;
+        }
+
+        return null;
+    }
+
+    /**
+     * 获取中间节点
+     */
+    public static ListNode getMidNode3(ListNode head) {
+
+
+        return null;
+    }
+
+    /**
      * 通过循环
      * 打印链表中每一个元素
      */
-    public static Node printElementByWhile(Node head) {
+    public static ListNode printElementByWhile(ListNode head) {
         while (head !=null) {
             System.out.println(head.val);
             head = head.next;
@@ -85,7 +131,7 @@ public class LinkedList {
      * 通过递归
      * 打印链表中每一个元素
      */
-    public static Node printElementByRecursive(Node head) {
+    public static ListNode printElementByRecursive(ListNode head) {
         if (head == null) {
             return null;
         }
@@ -96,16 +142,16 @@ public class LinkedList {
             return null;
         }
 
-        Node node = printElementByRecursive(head.next);
+        ListNode listNode = printElementByRecursive(head.next);
 
         return null;
     }
 
-    static class Node{
+    static class ListNode {
 
         int val;
 
-        Node next;
+        ListNode next;
 
         public int getVal() {
             return val;
@@ -115,11 +161,11 @@ public class LinkedList {
             this.val = val;
         }
 
-        public Node getNext() {
+        public ListNode getNext() {
             return next;
         }
 
-        public void setNext(Node next) {
+        public void setNext(ListNode next) {
             this.next = next;
         }
     }
