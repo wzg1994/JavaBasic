@@ -34,7 +34,7 @@ public class LinkedList {
         ListNode listNode4 = new ListNode();
         listNode4.setVal(5);
         listNode3.setNext(listNode4);
-        ListNode listNode = getMidNode1(head);
+        ListNode listNode = getMidNode3(head);
         printElementByRecursive(listNode);
     }
 
@@ -106,12 +106,16 @@ public class LinkedList {
     }
 
     /**
+     * 快慢指针
      * 获取中间节点
      */
     public static ListNode getMidNode3(ListNode head) {
-
-
-        return null;
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
     }
 
     /**
