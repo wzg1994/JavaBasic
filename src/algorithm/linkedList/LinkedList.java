@@ -119,6 +119,14 @@ public class LinkedList {
     }
 
     /**
+     * 删除倒数第N个节点
+     */
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+
+        return null;
+    }
+
+    /**
      * 通过循环
      * 打印链表中每一个元素
      */
