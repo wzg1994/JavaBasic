@@ -34,25 +34,38 @@ public class LinkedList {
         Node node4 = new Node();
         node4.setVal(5);
         node3.setNext(node4);
-        Node node = reverseList(head);
+        Node node = reverseList2(head);
         printElementByRecursive(node);
     }
 
     /**
      * 1，2，3，4，5反转
      */
-    public static Node reverseList(Node head) {
-
-        Node prev = null;
-        Node curr = head;
-        while (curr != null) {
-            Node nextTemp = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = nextTemp;
-            int a = 0;
+    public static Node reverseList1(Node head) {
+        Node pre = null;
+        Node cur = head;
+        while (cur != null) {
+            Node temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
         }
-        return prev;
+
+        return pre;
+    }
+
+    /**
+     * 递归反转单向链表
+     */
+    public static Node reverseList2(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Node p = reverseList2(head.next);
+        head.next.next = head;
+        head.next = null;
+        return p;
     }
 
     /**
