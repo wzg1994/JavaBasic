@@ -34,7 +34,7 @@ public class LinkedList {
         ListNode listNode4 = new ListNode();
         listNode4.setVal(5);
         listNode3.setNext(listNode4);
-        ListNode listNode = getMidNode3(head);
+        ListNode listNode = removeNthFromEnd(head, 2);
         printElementByRecursive(listNode);
     }
 
@@ -121,7 +121,42 @@ public class LinkedList {
     /**
      * 删除倒数第N个节点
      */
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
+        //定义头结点
+        ListNode dummy = new ListNode(0);
+        //连接在链表上
+        dummy.next = head;
+        int length  = 0;
+        ListNode first = head;
+        while (first != null) {
+            length++;
+            first = first.next;
+        }
+        //长度为5，删除倒数第2个元素，结果为3
+        //要删除的元素为第4个
+        length -= n;
+        first = dummy;
+        while (length > 0) {
+            length--;
+            first = first.next;
+        }
+        first.next = first.next.next;
+        return dummy.next;
+    }
+
+    /**
+     * 输入：1->2->4, 1->3->4
+     * 输出：1->1->2->3->4->4
+     * 合并两个有序列表
+     */
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return null;
+        }
+
+        l1.next = l2;
+
+
 
         return null;
     }
@@ -164,6 +199,12 @@ public class LinkedList {
         int val;
 
         ListNode next;
+
+        public ListNode() {}
+
+        public ListNode(int val) {
+            this.val = val;
+        }
 
         public int getVal() {
             return val;
