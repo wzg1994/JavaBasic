@@ -35,6 +35,7 @@ public class LinkedList {
         listNode4.setVal(5);
         listNode3.setNext(listNode4);
         ListNode listNode = removeNthFromEnd(head, 2);
+//        ListNode listNode = getMidNode2(head);
         printElementByRecursive(listNode);
     }
 
