@@ -10,9 +10,28 @@ public class SortDemo {
     public static void main(String[] args) {
         int[] arr = {2, 1, 8, 4, 3, 6, 6, 7};
 
-        int[] ints = selectionSort(arr);
+        int[] ints = bubbleSort(arr);
 
         System.out.println(Arrays.toString(arr));
+    }
+
+    /**
+     * 冒泡排序
+     *
+     *
+     */
+    public static int[] bubbleSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j + 1] < array[j]) {
+                    int temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+
+        return array;
     }
 
     /**
@@ -35,6 +54,20 @@ public class SortDemo {
             int temp = array[i];
             array[i] = array[minIndex];
             array[minIndex] = temp;
+        }
+        return array;
+    }
+
+    /**
+     * 插入排序
+     *
+     *
+     */
+    public static int[] insertionSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
+
+            }
         }
         return array;
     }
