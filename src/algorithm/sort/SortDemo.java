@@ -10,7 +10,7 @@ public class SortDemo {
     public static void main(String[] args) {
         int[] arr = {2, 1, 8, 4, 3, 6, 6, 7};
 
-        int[] ints = bubbleSort(arr);
+        int[] ints = insertionSort(arr);
 
         System.out.println(Arrays.toString(arr));
     }
@@ -64,11 +64,28 @@ public class SortDemo {
      *
      */
     public static int[] insertionSort(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length - i - 1; j++) {
-
+        for (int i = 1; i < array.length; i++) {
+            int j = i;
+            for (; j >= 1; j--) {
+                if (array[j - 1] > array[j]) {
+                    int temp = array[j - 1];
+                    array[j - 1] = array[j];
+                    array[j] = temp;
+                } else {
+                    break;
+                }
             }
         }
+        return array;
+    }
+
+    /**
+     * 希尔排序
+     *
+     *
+     */
+    public static int[] ShellSort(int[] array) {
+
         return array;
     }
 
