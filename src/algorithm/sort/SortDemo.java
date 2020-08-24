@@ -128,7 +128,7 @@ public class SortDemo {
     }
 
     /**
-     *   使用二分查找实现平方根函数，要求精确到小数点后6位 ==
+     *   使用二分查找实现平方根函数，要求精确到小数点后6位
      */
     public float sqrt_search(float n){
         float mid = 0.0f;
