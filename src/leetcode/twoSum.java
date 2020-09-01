@@ -23,17 +23,17 @@ public class twoSum {
         int[] nums = {3,2,4};
         int target = 6;
         int[] ints = twoSum(nums, target);
-//        System.out.println(Arrays.toString(ints));
+        System.out.println(Arrays.toString(ints));
     }
 
     static int[] twoSum(int[] nums, int target) {
 
         for (int i = 0; i < nums.length; i++) {
-            int j = nums.length - i - 1;
-            for (int k = i + 1; k < j; k++) {
+            for (int k = i + 1; k < nums.length; k++) {
                 if (nums[i] + nums[k] == target) {
                     System.out.println(i);
                     System.out.println(k);
+                    return new int[] { i, k };
                 }
             }
         }
