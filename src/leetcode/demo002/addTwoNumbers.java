@@ -42,7 +42,12 @@ public class addTwoNumbers {
 
     static ListNode solution(ListNode l1, ListNode l2) {
 
+        while (l1 != null && l2 != null) {
+            int i = l1.val + l2.val;
+            int mole = i % 10;
 
+
+        }
 
         return null;
     }
