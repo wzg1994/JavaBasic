@@ -169,4 +169,4 @@ buildNumber.properties
 /ynet-inmanage/src/main/resources/static/platform/
 /supplier-inmanage/src/main/resources/static/
 /channel-inmanage/src/main/resources/static/channel/
-/output/production/JavaBasic/META-INF/JavaBasic.kotlin_module
+/output/*
