@@ -31,25 +31,38 @@ public class addTwoNumbers {
 
         ListNode l2 = new ListNode(5);
         ListNode l2_1 = new ListNode(6);
-        ListNode l2_2 = new ListNode(7);
+        ListNode l2_2 = new ListNode(4);
         l2.next = l2_1;
         l2_1.next = l2_2;
 
         ListNode solution = solution(l1, l2);
-
-        showList(l1);
+        showList(solution);
     }
 
+    /**
+     * 要考虑到每一位数字上最大的权 9 + 9 + 1 = 18
+     * 其中两个9代表两个链表的最大值，1则代表低位进位
+     */
     static ListNode solution(ListNode l1, ListNode l2) {
-
-        while (l1 != null && l2 != null) {
-            int i = l1.val + l2.val;
-            int mole = i % 10;
-
-
+        //使用了哑结点 简化了链表长度不一致为空等情况
+        //curr = dummyHead很奇妙！！！
+        ListNode dummyHead = new ListNode(0);
+        ListNode p = l1, q = l2, curr = dummyHead;
+        int carry = 0;
+        while (p != null || q != null) {
+            int x = (p != null) ? p.val : 0;
+            int y = (q != null) ? q.val : 0;
+            int sum = carry + x + y;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+            if (p != null) p = p.next;
+            if (q != null) q = q.next;
         }
-
-        return null;
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
+        }
+        return dummyHead.next;
     }
 
     static void showList(ListNode list) {
