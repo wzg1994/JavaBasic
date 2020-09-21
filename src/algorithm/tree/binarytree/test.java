@@ -31,6 +31,7 @@ public class test {
         node9.parentNode = node5;
 
         BinaryTree tree = new BinaryTree(node1);
-        tree.preOrderTraverse();
+//        tree.preOrderTraverse();
+        tree.preOrderTraverseByStack();
     }
 }
