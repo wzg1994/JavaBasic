@@ -1,5 +1,7 @@
 package algorithm.tree.binarytree;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BinaryTree {
@@ -128,6 +130,32 @@ public class BinaryTree {
         }
     }
 
+    //================层序遍历======================
+
+    public void levelOrderTraverse(){
+        System.out.println("层序遍历：");
+        levelOrderTraverse(root);
+        System.out.println();
+    }
+    private void levelOrderTraverse(Node root){
+        Queue<Node> queue = new ArrayDeque<>();
+        Node curr = root;
+        while(curr!=null||!queue.isEmpty()){
+            while(curr!=null){
+                if(queue.isEmpty())//第一次需要放入根结点
+                    queue.add(curr);
+                if(curr.leftChild!=null)
+                    queue.add(curr.leftChild);
+                if(curr.rightChild!=null)
+                    queue.add(curr.rightChild);
+                curr=null;
+            }
+            curr = queue.poll();
+            curr.displayNode();
+            curr = queue.peek();
+        }
+    }
+
     /**
      * 判断树是否为空
      */
@@ -202,7 +230,69 @@ public class BinaryTree {
 //        return this.numberOfLeafs(root)-1;
 //    }
 
+    /**
+     * 查找指定值的结点
+     */
+    public Node findValue(String value){
+        return findValue(root,value);
+    }
+    private Node findValue(Node node,String value){
+        if(node==null)
+            return null;
+        else if(node.data.equals(value))
+            return node;
+        else{
+            Node nodeL = this.findValue(node.leftChild,value);//未找到则从左子树查找
+            Node nodeR = this.findValue(node.rightChild,value);//从右子树查找
+            if(nodeL!=null&&node.data.equals(value))
+                return nodeL;
+            else if(nodeR!=null&&nodeR.data.equals(value))
+                return nodeR;
+            else
+                return null;
+        }
+    }
 
+    //================二叉树镜像=====================
 
+    /**
+     * 递归获取镜像
+     */
+    public void getMirror(){
+        this.getMirror(root);
+    }
 
+    private void getMirror(Node node){
+        if(node==null)
+            return;
+        //交换左右孩子
+        Node temp = node.leftChild;
+        node.leftChild = node.rightChild;
+        node.rightChild = temp;
+        if(node.leftChild!=null)//以左孩子为根，翻转左子树
+            getMirror(node.leftChild);
+        if(node.rightChild!=null)
+            getMirror(node.rightChild);
+    }
+
+    /**
+     * 非递归获取镜像
+     */
+    public void getMirrorByStack(){
+        this.getMirrorByStack(root);
+    }
+    private void getMirrorByStack(Node root) {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            Node top = stack.pop();
+            Node temp = top.leftChild;
+            top.leftChild = top.rightChild;
+            top.rightChild = temp;
+            if(top.leftChild!=null)
+                stack.push(top.leftChild);
+            if(top.rightChild!=null)
+                stack.push(top.rightChild);
+        }
+    }
 }
