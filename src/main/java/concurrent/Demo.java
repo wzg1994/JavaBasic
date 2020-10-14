@@ -5,25 +5,32 @@ package concurrent;
  */
 public class Demo {
 
-    public volatile int inc = 0;
+    static int num = 0;
+    static volatile boolean flag = false;
 
-    public void increase() {
-        inc++;
-    }
+    public static void main(String[] args){
 
-    public static void main(String[] args) {
-        final Demo test = new Demo();
-        for(int i=0;i<10;i++){
-            new Thread(){
-                public void run() {
-                    for(int j=0;j<1000;j++)
-                        test.increase();
-                };
-            }.start();
+        Thread t1 = new Thread(() -> {
+            while (100 > num) {
+                if (!flag && (num == 0 || ++num % 2 == 0)) {
+                    System.out.println(num);
+                    flag = true;
+                }
+            }
         }
+        );
 
-        while(Thread.activeCount()>1)  //保证前面的线程都执行完
-            Thread.yield();
-        System.out.println(test.inc);
+        Thread t2 = new Thread(() -> {
+            while (100 > num) {
+                if (flag && (++num % 2 != 0)) {
+                    System.out.println(num);
+                    flag = false;
+                }
+            }
+        }
+        );
+
+        t1.start();
+        t2.start();
     }
 }
