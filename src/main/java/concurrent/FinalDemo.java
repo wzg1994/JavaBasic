@@ -5,24 +5,24 @@ package concurrent;
  */
 public class FinalDemo {
 
-    int i;
+    int i;                              //普通变量
 
-    final int j;
+    final int j;                        //final变量
 
     static FinalDemo obj;
 
-    public static void writer() {
+    public FinalDemo() {                //构造函数
+        i = 1;                          //写普通域
+        j = 2;                          //写final域
+    }
+
+    public static void writer() {       //写线程A执行
         obj = new FinalDemo();
     }
 
-    public static void reader() {
-        FinalDemo object = obj;
-        int a = obj.i;
-        int b = obj.j;
-    }
-
-    public FinalDemo() {
-        i = 1;
-        j = 2;
+    public static void reader() {       //读线程B执行
+        FinalDemo object = obj;         //读对象引用
+        int a = obj.i;                  //读普通域
+        int b = obj.j;                  //读final域
     }
 }
