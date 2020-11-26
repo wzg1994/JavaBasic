@@ -12,7 +12,6 @@ import java.util.Iterator;
 public class test {
 
     public static void main(String[] args) throws IOException {
-        Reactor reactor = new Reactor(8888);
-        reactor.run();
+        new Thread(new Reactor(8888)).start();
     }
 }
