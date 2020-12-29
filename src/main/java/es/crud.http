@@ -1,0 +1,39 @@
+#=============查询====================
+
+# 查询所有文档，分数都为1
+GET localhost:9200/{index}/_search?pretty
+Content-Type: application/json
+
+{
+  "query": {
+    "match_all": {}
+  }
+}
+###
+
+# 可以通过boost参数改变分数
+GET localhost:9200/{index}/_search?pretty
+Content-Type: application/json
+
+{
+  "query": {
+    "match_all": {"boost" : 1.2}
+  }
+}
+###
+
+# match_all的相反操作
+GET localhost:9200/{index}/_search?pretty
+Content-Type: application/json
+
+{
+  "query": {
+    "match_none": {}
+  }
+}
+###
+
+#=============bool query====================
+# must 子句（查询）必须出现在匹配的文档中，并将有助于得分。
+
+
