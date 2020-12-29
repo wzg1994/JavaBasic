@@ -9,7 +9,7 @@ public class SafeCount {
 
     public synchronized int getI() {
         System.out.println(Thread.currentThread().getName() + " -> get...");
-        System.out.println(i);
+//        System.out.println(i);
         return i;
     }
 
