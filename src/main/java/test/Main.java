@@ -9,13 +9,30 @@ public class Main  {
 
     public static void main(String[] args) throws InterruptedException {
 
-        for (int i = 0; i < 1000; i++) {
-            Thread thread = new Thread(() -> {
-                SAFE_COUNT.inc();
-                System.out.println(SAFE_COUNT.getI());
-            });
-            thread.start();
+//        for (int i = 0; i < 1000; i++) {
+//            Thread thread = new Thread(() -> {
+//                SAFE_COUNT.inc();
+//                System.out.println(SAFE_COUNT.getI());
+//            });
+//            thread.start();
+//        }
+
+        for (int i = 0; i < 100; i++) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    SAFE_COUNT.inc();
+                }
+            }).start();
         }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SAFE_COUNT.getI();
+            }
+        }).start();
+
     }
 
 //    public static void main(String[] args) {
